@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pioneer Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+</head>
+
+<body>
+<section id="loginArea"> 
+    <div class="container">
+        <h1 class="text-center my-5">Welcome to Pioneer Bank</h1>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="login-area">
+                    <p class="login">Login</p>
+                    <form class="form-horizontal shadow">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                       
+                    </form>
+                        <button id='login' class="btn btn-success">Enter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>   
+
+
+<!-- Transection Area Start -->
+<section id="transectionArea"> 
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          
+            <div class="col-12 col-lg-4">
+                <div class="deposit">
+                    <p class='mb-0'>Deposit</p>
+                    <p class="num mb-0">$ <span id='currentDeposit'> 00 </span></p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="withdraw">
+                    <p class='mb-0'>Withdraw</p>
+                    <p class="num mb-0">$ <span id="currentWithdraw">00</span></p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="blance">
+                    <p class='mb-0'>Blance</p>
+                    <p class="num mb-0">$ <span id="currentBlance">00</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-6 mb-4">
+                <div class="deposit-form">
+                    <p>Deposit</p>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control"  id="depositAmount" placeholder="$ amount you want to deposit">
+                          </div>
+                    </form>                         
+                     <button  class="btn btn-success" id='addDeposit'>Deposit</button>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="deposit-form">
+                    <p>Withdraw</p>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="withdrawAmount" placeholder="$ amount you want to withdraw">
+                          </div>  
+                    </form>
+                    <button  class="btn btn-success" id='addWithdraw'>Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>   
+
+<!-- Transection Area End -->
+
+    <!-- <script src="main.js"></script> -->
+    <script>
+
+        // Login Btn event handelar
+
+        const loginBtn = document.getElementById('login');
+        loginBtn.addEventListener('click', function () {
+            const loginRe = document.getElementById('loginArea');
+            loginRe.style.display = "none";
+            const ta = document.getElementById('transectionArea');
+            ta.style.display = "block";
+        })
+
+// depositBtn event handelar
+        const depositBtn=document.getElementById("addDeposit");
+                depositBtn.addEventListener('click',function(event){
+
+                    // const depositAmount=document.getElementById('depositAmount').value;
+                    // const depositNum=parseFloat(depositAmount);
+                    const depositNum=getInputNumber("depositAmount");
+
+                    // const currentDeposit=document.getElementById('currentDeposit').innerText;
+                    // const currentDepositNum=parseFloat(currentDeposit);
+                    // const totalDeposit= depositNum + currentDepositNum;
+                    // document.getElementById('currentDeposit').innerText= totalDeposit;
+                
+                    updateSpanTxt("currentDeposit", depositNum);
+                    updateSpanTxt("currentBlance", depositNum);    
+        })
+
+            function updateSpanTxt(id,depositNum){
+                const current=document.getElementById(id).innerText;
+                const currentNum=parseFloat(current);
+                const blance= currentNum + depositNum;
+                document.getElementById(id).innerText= blance;
+            }
+
+            function getInputNumber(id){
+                const amount=document.getElementById(id).value;
+                const amountNumber=parseFloat(amount);
+                return amountNumber;
+            }
+
+// withdrawBtn event handelar
+const withdrawBtn= document.getElementById('addWithdraw');
+
+    withdrawBtn.addEventListener('click', function(){
+
+        // const withdrawAmount=document.getElementById('withdrawAmount').value;
+        // const withdrawNum=(withdrawAmount);
+        const withdrawNum=getInputNumber("withdrawAmount");
+
+        // const currentWithdraw=document.getElementById('currentWithdraw').innerText;
+        // const currentWithdrawNum=parseFloat(currentWithdraw);
+        // const totalWithdraw = withdrawNum + currentWithdrawNum;
+        // document.getElementById('currentWithdraw').innerText= totalWithdraw;
+        updateSpanTxt("currentWithdraw", withdrawNum);
+
+
+        // const currentBlance=document.getElementById('currentBlance').innerText;
+        // const currentBlanceNum=parseFloat(currentBlance);
+        // const blance= currentBlanceNum - withdrawNum;
+        // document.getElementById('currentBlance').innerText= blance;
+        updateSpanTxt("currentBlance", -1 * withdrawNum);
+
+        
+        document.getElementById('withdrawAmount').value="";
+
+    })
+
+    </script>
+</body>
+
+</html>

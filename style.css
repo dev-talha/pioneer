@@ -1,0 +1,41 @@
+.login{
+    font-size: 20px;
+    font-weight: bold;
+}
+.login-area{
+    padding: 50px;
+    box-shadow:5px 5px 10px gray;
+    border-radius: 10px;
+}
+#transectionArea{
+    display:none;
+}
+.deposit, .withdraw, .blance {
+   margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow:5px 5px 10px #dcdcdc;
+    padding: 20px;
+    color: #fff;
+}
+.deposit{
+    background-color: rebeccapurple;
+}
+.withdraw{
+    background-color: #009688;
+}
+.blance{
+    background-color: #ff9800;
+}
+.num{
+    font-size: 40px;
+    font-weight: bold;
+}
+.deposit-form{
+    padding: 30px;
+    border-radius: 7px;
+    box-shadow:0px 0px 20px #bfbfbf;;
+}
+.deposit-form p{
+    font-size: 20px;
+    font-weight: bold;
+}
